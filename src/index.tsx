@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { App } from './App';
 import reportWebVitals from './reportWebVitals';
+import { Grid } from 'semantic-ui-react';
+import { configure } from 'mobx';
+
+// https://mobx.js.org/configuration.html#configuration-
+configure({
+  enforceActions: 'always',
+  computedRequiresReaction: true,
+  reactionRequiresObservable: true,
+  observableRequiresReaction: true,
+  disableErrorBoundaries: true,
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
+      <Grid.Column>
+        <App />
+      </Grid.Column>
+    </Grid>
   </React.StrictMode>,
   document.getElementById('root')
 );
