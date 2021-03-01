@@ -12,7 +12,7 @@
     "@types/react-dom": "^17.0.0",
     "axios": "0.21.1",
     "mobx": "6.1.7",
-    "mobx-persist-store": "0.5.16",
+    "mobx-persist-store": "0.5.19",
     "mobx-react": "7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "npx prettier --write \"./**/*.{ts,tsx,js,jsx,json,md}\""
+    "prettier": "npx prettier --write \"./**/*.{ts,tsx,js,jsx,json,md}\"",
+    "up": "yarn upgrade-interactive --latest"
   },
   "eslintConfig": {
     "extends": [
