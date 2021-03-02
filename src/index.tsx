@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
-import { Grid } from 'semantic-ui-react';
+import { Container, Divider, Header, List } from 'semantic-ui-react';
 import { configure } from 'mobx';
 
 // https://mobx.js.org/configuration.html#configuration-
@@ -17,11 +17,21 @@ configure({
 
 ReactDOM.render(
   <React.StrictMode>
-    <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
-      <Grid.Column>
-        <App />
-      </Grid.Column>
-    </Grid>
+    <Container style={{ margin: 20 }}>
+      <Header as="h1" dividing>
+        Mobx Persist Store with MobX 6
+      </Header>
+      <List bulleted>
+        <List.Item
+          as="a"
+          content="Official Documentation"
+          href="https://github.com/quarrant/mobx-persist-store"
+          target="_blank"
+        />
+      </List>
+      <Divider hidden />
+      <App />
+    </Container>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,6 +11,10 @@ export class UserStore {
     return isSynchronized(this);
   }
 
+  // get isPersistence() {
+  //   return isPersistence(this);
+  // }
+
   constructor() {
     makeAutoObservable(this);
 
