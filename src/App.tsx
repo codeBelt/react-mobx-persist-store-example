@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Button, Card, Divider, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
-import { UserStore } from './stores/User.store';
+import { persistUserStore, UserStore } from './stores/User.store';
 
 export const App: React.FC = observer(() => {
-  // const [localStore] = useState(() => persistUserStore());
-  const [localStore] = useState(() => new UserStore());
+  const [localStore] = useState(() => persistUserStore());
+  // const [localStore] = useState(() => new UserStore());
 
   console.log(`isSynchronized`, localStore.isSynchronized);
   // console.log(`isPersistence`, localStore.isPersistence);
 
   return (
     <Segment placeholder>
-      <Grid columns={2} relaxed="very">
-        <Grid.Column>
+      <Grid columns={2} relaxed="very" verticalAlign="middle" centered>
+        <Grid.Column middle aligned>
           {!localStore.user && (
             <Button basic color="green" onClick={() => localStore.loadRandomUser()}>
               Load Random User
@@ -54,10 +54,18 @@ export const App: React.FC = observer(() => {
               />
               <Segment attached="bottom" color="blue">
                 <Icon name="arrow left" />
-                Clicking "Load Random User" will update the store and the data with be saved (persisted).
+                Clicking "Load Random User" will update the store and at the same time the data is saved locally to{' '}
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  localStorage
+                </a>
+                .
                 <br />
                 <br />
-                Refresh the browser and you will notice the data has been saved (persisted).
+                Refresh the browser and you will notice the data will be loaded into the store automatically.
               </Segment>
             </Grid.Column>
           </Grid>
@@ -71,10 +79,19 @@ export const App: React.FC = observer(() => {
                 onClick={() => localStore.clearStore()}
               />
               <Segment attached="bottom" color="red">
-                Calling <b>clearPersist</b> in the store will clear the saved (persisted) data. <br />
+                Calling <b>clearPersist</b> in the store will remove the saved data from{' '}
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  localStorage
+                </a>
+                .
                 <br />
-                After clicking "Clear Store Persist", <b>refresh the browser</b> you will notice the (persisted) data is
-                no longer there on load.
+                <br />
+                After clicking "Clear Store Persist", <b>reload the browser</b> and you will notice the locally saved
+                data is no longer loaded into the store.
               </Segment>
             </Grid.Column>
           </Grid>
@@ -88,10 +105,19 @@ export const App: React.FC = observer(() => {
                 onClick={() => localStore.stopPersist()}
               />
               <Segment attached="bottom" color="orange">
-                Calling <b>stopPersist</b> in the store will stop saving and changes to the store. <br />
+                Calling <b>stopPersist</b> in the store will stop saving any changes to the store but the saved data
+                will still live in{' '}
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  localStorage
+                </a>
+                . <br />
                 <br />
-                If you click "Stop Store Persist" then click "Load Random User" and then refresh the browser you will
-                notice only the last user was saved.
+                If you click "Stop Store Persist" then click "Load Random User" and reload the browser. You will notice
+                it only saved the last data before you stopped listening for changes in the store.
               </Segment>
             </Grid.Column>
           </Grid>
