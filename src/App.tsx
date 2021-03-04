@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Card, Divider, Grid, Icon, Image, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
-import { persistUserStore, UserStore } from './stores/User.store';
+import { UserStore } from './stores/User.store';
 
 export const App: React.FC = observer(() => {
-  const [localStore] = useState(() => persistUserStore());
-  // const [localStore] = useState(() => new UserStore());
+  // const [localStore] = useState(() => persistUserStore());
+  const [localStore] = useState(() => new UserStore());
 
   console.log(`isSynchronized`, localStore.isSynchronized);
   // console.log(`isPersistence`, localStore.isPersistence);
@@ -13,7 +13,7 @@ export const App: React.FC = observer(() => {
   return (
     <Segment placeholder>
       <Grid columns={2} relaxed="very" verticalAlign="middle" centered>
-        <Grid.Column middle aligned>
+        <Grid.Column>
           {!localStore.user && (
             <Button basic color="green" onClick={() => localStore.loadRandomUser()}>
               Load Random User
