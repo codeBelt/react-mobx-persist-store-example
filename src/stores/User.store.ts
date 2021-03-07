@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { getUserRequest } from '../domains/user/user.services';
 import { IUser } from '../domains/user/user.types';
-import { stopPersist, clearPersist, isSynchronized, persistence, StorageAdapter } from 'mobx-persist-store';
+import { stopPersist, clearPersist, isSynchronized } from 'mobx-persist-store';
 import { persistStore } from '../utils/mobx.utils';
 
 export class UserStore {
@@ -10,10 +10,6 @@ export class UserStore {
   get isSynchronized() {
     return isSynchronized(this);
   }
-
-  // get isPersistence() {
-  //   return isPersistence(this);
-  // }
 
   constructor() {
     makeAutoObservable(this);

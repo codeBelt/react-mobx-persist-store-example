@@ -24,8 +24,6 @@ export const persistStore = <T extends Record<string, any>, P extends keyof T>(
       },
       write: async (name, content) => {
         window.localStorage.setItem(name, JSON.stringify(content));
-
-        return undefined;
       },
     }),
     reactionOptions: {

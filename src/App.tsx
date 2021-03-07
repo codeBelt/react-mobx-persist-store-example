@@ -4,11 +4,7 @@ import { observer } from 'mobx-react';
 import { UserStore } from './stores/User.store';
 
 export const App: React.FC = observer(() => {
-  // const [localStore] = useState(() => persistUserStore());
   const [localStore] = useState(() => new UserStore());
-
-  console.log(`isSynchronized`, localStore.isSynchronized);
-  // console.log(`isPersistence`, localStore.isPersistence);
 
   return (
     <Segment placeholder>
