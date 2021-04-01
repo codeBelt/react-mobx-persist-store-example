@@ -12,7 +12,9 @@ interface IProps {}
 export const IndexPage: React.FC<IProps> = observer((props) => {
   const localStore = useLocalStore<IndexPageStore>();
 
-  useEffect(() => {}, [localStore]);
+  useEffect(() => {
+    return () => localStore.stopPersisting();
+  }, [localStore]);
 
   return (
     <LoadingIndicator isActive={localStore.isRequesting}>
