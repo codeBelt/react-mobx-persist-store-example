@@ -20,20 +20,12 @@ export class IndexPageStore {
   storePersist;
 
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeAutoObservable(this, { storePersist: false }, { autoBind: true });
 
-    makePersistable(
-      this,
-      {
-        name: 'IndexPageStore',
-        properties: ['castsResults', 'showResults', 'sortValue'],
-        storage: environment.isBrowser ? localForage : undefined,
-        // storage: isBrowser ? window.localStorage : noopStorage,
-        // storage: isBrowser ? AsyncStorage : noopStorage,
-        stringify: true,
-      },
-      { delay: 200 }
-    );
+    this.storePersist = makePersistable(this, {
+      name: 'IndexPageStore',
+      properties: ['castsResults', 'showResults', 'sortValue'],
+    });
   }
 
   get isHydrated(): boolean {

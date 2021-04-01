@@ -16,7 +16,6 @@ export class AuthGlobalStore {
     this.globalStore = globalStore;
 
     makeAutoObservable(this);
-
     makePersistable(this, { name: 'AuthGlobalStore', properties: ['authResults'] });
   }
 

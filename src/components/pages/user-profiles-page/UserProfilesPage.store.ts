@@ -9,18 +9,7 @@ export class UserProfilesPageStore {
   user: IUser | null = null;
   list: IUser[] = [];
 
-  storePersist = makePersistable(
-    this,
-    {
-      name: 'UserProfilesPageStore',
-      properties: ['user', 'list'],
-      storage: environment.isBrowser ? localForage : undefined,
-      // storage: isBrowser ? window.localStorage : noopStorage,
-      // storage: isBrowser ? AsyncStorage : noopStorage,
-      stringify: true,
-    },
-    { delay: 200 }
-  );
+  storePersist = makePersistable(this, { name: 'UserProfilesPageStore', properties: ['user', 'list'] });
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
