@@ -3,9 +3,6 @@ import { configure } from 'mobx';
 import environment from 'environment';
 import { enableStaticRendering } from 'mobx-react-lite';
 import { AuthGlobalStore } from './auth/AuthGlobalStore';
-import { configurePersistable } from 'mobx-persist-store';
-import localForage from 'localforage';
-import ms from 'milliseconds';
 
 enableStaticRendering(environment.isServer);
 // https://mobx.js.org/configuration.html#configuration-
@@ -16,14 +13,6 @@ configure({
   observableRequiresReaction: environment.isBrowser,
   disableErrorBoundaries: false,
 });
-configurePersistable(
-  {
-    storage: environment.isBrowser ? localForage : undefined,
-    expireIn: ms.days(1),
-    stringify: false,
-  },
-  { delay: 0, fireImmediately: false }
-);
 
 export default class GlobalStore {
   readonly authStore: AuthGlobalStore;

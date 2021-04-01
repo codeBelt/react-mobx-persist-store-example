@@ -14,15 +14,11 @@ export const UserProfile: React.FC<IProps> = observer((props) => {
         <Menu compact={true}>
           <Menu.Item as="a">
             Store Hydrated
-            <Label color={props.store.isHydrated ? 'teal' : 'red'} floating={true}>
-              {props.store.isHydrated ? 'On' : 'Off'}
-            </Label>
+            <Label color={} floating={true}></Label>
           </Menu.Item>
           <Menu.Item as="a">
             Store Persisting
-            <Label color={props.store.isPersisting ? 'teal' : 'red'} floating={true}>
-              {props.store.isPersisting ? 'On' : 'Off'}
-            </Label>
+            <Label color={} floating={true}></Label>
           </Menu.Item>
         </Menu>
       </div>
@@ -66,13 +62,7 @@ export const UserProfile: React.FC<IProps> = observer((props) => {
                 icon="redo"
                 onClick={() => window.location.reload()}
               />
-              <Button
-                attached="top"
-                content="Rehydrate Store"
-                color="green"
-                icon="spinner"
-                onClick={props.store.rehydrateStore}
-              />
+              <Button attached="top" content="Rehydrate Store" color="green" icon="spinner" onClick={} />
               <Segment attached="bottom" color="blue">
                 <Icon name="arrow left" />
                 Clicking &quot;Load Random User&quot; will update the store and at the same time the data is saved
@@ -93,13 +83,7 @@ export const UserProfile: React.FC<IProps> = observer((props) => {
           </Grid>
           <Grid>
             <Grid.Column>
-              <Button
-                attached="top"
-                content="Clear Store Persist"
-                color="red"
-                icon="delete"
-                onClick={props.store.clearStore}
-              />
+              <Button attached="top" content="Clear Store Persist" color="red" icon="delete" onClick={} />
               <Segment attached="bottom" color="red">
                 Calling <b>clearPersist</b> in the store will remove the saved data from{' '}
                 <a
@@ -119,20 +103,8 @@ export const UserProfile: React.FC<IProps> = observer((props) => {
           </Grid>
           <Grid>
             <Grid.Column>
-              <Button
-                attached="top"
-                content="Stop Store Persist"
-                color="orange"
-                icon="pause"
-                onClick={props.store.stopPersist}
-              />
-              <Button
-                attached="top"
-                content="Restart Store Persist"
-                color="orange"
-                icon="play"
-                onClick={props.store.startPersist}
-              />
+              <Button attached="top" content="Stop Store Persist" color="orange" icon="pause" onClick={} />
+              <Button attached="top" content="Restart Store Persist" color="orange" icon="play" onClick={} />
               <Segment attached="bottom" color="orange">
                 Calling <b>stopPersist</b> in the store will stop saving any changes to the store but the saved data
                 will still live in{' '}

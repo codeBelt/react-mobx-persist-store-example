@@ -6,7 +6,6 @@ import { initialResponseStatus } from '../../utils/mobx.utils';
 import { Routes } from '../../constants/Routes.constants';
 import { IUser, IUserResponse } from '../../domains/auth/auth.types';
 import Router from 'next/router';
-import { clearPersistedStore, makePersistable } from 'mobx-persist-store';
 
 export class AuthGlobalStore {
   readonly globalStore: GlobalStore;
@@ -16,7 +15,6 @@ export class AuthGlobalStore {
     this.globalStore = globalStore;
 
     makeAutoObservable(this);
-    makePersistable(this, { name: 'AuthGlobalStore', properties: ['authResults'] });
   }
 
   get isAuthenticated(): boolean {
@@ -57,7 +55,5 @@ export class AuthGlobalStore {
     this.authResults = initialResponseStatus(null, false);
 
     Router.router?.push(Routes.Index);
-
-    clearPersistedStore(this);
   }
 }
