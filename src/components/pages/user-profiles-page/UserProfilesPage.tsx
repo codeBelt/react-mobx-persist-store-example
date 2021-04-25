@@ -7,7 +7,9 @@ interface IProps {}
 export const UserProfilesPage: React.FC<IProps> = (props) => {
   const [localStore] = useState(() => new UserProfilesPageStore());
 
-  useEffect(() => {}, [localStore]);
+  useEffect(() => {
+    return () => localStore.stopPersisting();
+  }, [localStore]);
 
   return (
     <div>
