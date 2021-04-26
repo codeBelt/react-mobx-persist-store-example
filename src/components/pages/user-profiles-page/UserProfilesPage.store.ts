@@ -1,46 +1,52 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { getUserRequest } from '../../../domains/auth/auth.services';
 import { IUser } from '../../../domains/auth/auth.types';
-import { makePersistable } from 'mobx-persist-store';
-import localForage from 'localforage';
-import environment from 'environment';
+import {
+  clearPersistedStore,
+  hydrateStore,
+  isPersisting,
+  makePersistable,
+  pausePersisting,
+  startPersisting,
+  isHydrated,
+  stopPersisting,
+} from 'mobx-persist-store';
 
 export class UserProfilesPageStore {
   user: IUser | null = null;
   list: IUser[] = [];
 
-  storePersist = makePersistable(this, { name: 'UserProfilesPageStore', properties: ['user', 'list'] });
-
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+    makePersistable(this, { name: 'UserProfilesPageStore', properties: ['user', 'list'] });
   }
 
   get isHydrated(): boolean {
-    return this.storePersist.isHydrated;
+    return isHydrated(this);
   }
 
   get isPersisting(): boolean {
-    return this.storePersist.isPersisting;
+    return isPersisting(this);
   }
 
   async clearStore(): Promise<void> {
-    await this.storePersist.clearPersistedStore();
+    await clearPersistedStore(this);
   }
 
   stopPersist(): void {
-    this.storePersist.pausePersisting();
+    pausePersisting(this);
   }
 
   startPersist(): void {
-    this.storePersist.startPersisting();
+    startPersisting(this);
   }
 
   stopPersisting(): void {
-    this.storePersist.stopPersisting();
+    stopPersisting(this);
   }
 
   async rehydrateStore(): Promise<void> {
-    await this.storePersist.hydrateStore();
+    await hydrateStore(this);
   }
 
   async loadRandomUser(): Promise<void> {

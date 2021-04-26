@@ -21,6 +21,7 @@ configurePersistable(
     storage: environment.isBrowser ? localForage : undefined,
     expireIn: ms.days(1),
     stringify: false,
+    debugMode: true,
   },
   { delay: 0, fireImmediately: false }
 );

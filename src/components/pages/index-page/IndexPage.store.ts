@@ -6,7 +6,7 @@ import { ApiResponse } from '../../../utils/http/http.types';
 import { defaultShowId } from '../../../domains/shows/shows.constants';
 import orderBy from 'lodash.orderby';
 import { getGlobalStore } from '../../shared/global-store-provider/GlobalStoreProvider';
-import { makePersistable } from 'mobx-persist-store';
+import { isHydrated, makePersistable, stopPersisting } from 'mobx-persist-store';
 
 export class IndexPageStore {
   readonly globalStore = getGlobalStore();
@@ -14,19 +14,14 @@ export class IndexPageStore {
   showResults = initialResponseStatus<IShow | null>(null);
   castsResults = initialResponseStatus<ICast[]>([]);
 
-  storePersist;
-
   constructor() {
-    makeAutoObservable(this, { storePersist: false }, { autoBind: true });
+    makeAutoObservable(this, {}, { autoBind: true });
 
-    this.storePersist = makePersistable(this, {
-      name: 'IndexPageStore',
-      properties: ['castsResults', 'showResults', 'sortValue'],
-    });
+    makePersistable(this, { name: 'IndexPageStore', properties: ['castsResults', 'showResults', 'sortValue'] });
   }
 
   get isHydrated(): boolean {
-    return this.storePersist.isHydrated;
+    return isHydrated(this);
   }
 
   get isRequesting(): boolean {
@@ -42,7 +37,7 @@ export class IndexPageStore {
   }
 
   stopPersisting(): void {
-    this.storePersist.stopPersisting();
+    stopPersisting(this);
   }
 
   /**
