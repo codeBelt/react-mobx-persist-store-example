@@ -11,7 +11,23 @@ import {
   isHydrated,
   stopPersisting,
   getPersistedStore,
+  StorageController,
 } from 'mobx-persist-store';
+import environment from 'environment';
+import { delay } from '../../../utils/misc.utils';
+import ms from 'milliseconds';
+
+const customizedStorageController: StorageController | undefined = environment.isBrowser
+  ? {
+      setItem: (key, data) => window.localStorage.setItem(key, data),
+      removeItem: (key) => window.localStorage.removeItem(key),
+      getItem: async (key: string) => {
+        await delay(ms.seconds(2));
+
+        return window.localStorage.getItem(key);
+      },
+    }
+  : undefined;
 
 export class UserProfilesPageStore {
   user: IUser | null = null;
@@ -19,7 +35,12 @@ export class UserProfilesPageStore {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
-    makePersistable(this, { name: 'UserProfilesPageStore', properties: ['user', 'list'] });
+
+    makePersistable(this, {
+      name: 'UserProfilesPageStore',
+      properties: ['user', 'list'],
+      storage: customizedStorageController,
+    });
   }
 
   get isHydrated(): boolean {
