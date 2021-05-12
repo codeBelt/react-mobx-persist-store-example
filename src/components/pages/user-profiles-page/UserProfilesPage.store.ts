@@ -10,6 +10,7 @@ import {
   startPersisting,
   isHydrated,
   stopPersisting,
+  getPersistedStore,
 } from 'mobx-persist-store';
 
 export class UserProfilesPageStore {
@@ -29,11 +30,11 @@ export class UserProfilesPageStore {
     return isPersisting(this);
   }
 
-  async clearStore(): Promise<void> {
+  async clearPersistedData(): Promise<void> {
     await clearPersistedStore(this);
   }
 
-  stopPersist(): void {
+  pausePersist(): void {
     pausePersisting(this);
   }
 
@@ -41,12 +42,18 @@ export class UserProfilesPageStore {
     startPersisting(this);
   }
 
-  stopPersisting(): void {
+  disposePersist(): void {
     stopPersisting(this);
   }
 
   async rehydrateStore(): Promise<void> {
     await hydrateStore(this);
+  }
+
+  async getPersistedData(): Promise<void> {
+    const data = await getPersistedStore(this);
+
+    alert(JSON.stringify(data));
   }
 
   async loadRandomUser(): Promise<void> {

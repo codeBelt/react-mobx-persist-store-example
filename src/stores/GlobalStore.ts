@@ -23,7 +23,7 @@ configurePersistable(
     stringify: false,
     debugMode: true,
   },
-  { delay: 0, fireImmediately: false }
+  { delay: 200, fireImmediately: false }
 );
 
 export default class GlobalStore {
