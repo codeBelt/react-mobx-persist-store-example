@@ -2986,8 +2986,10 @@ mkdirp@^0.5.1, mkdirp@^0.5.5:
   dependencies:
     minimist "^1.2.5"
 
-"mobx-persist-store@file:.yalc/mobx-persist-store":
-  version "0.5.29"
+mobx-persist-store@1.0.0-rc.0:
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/mobx-persist-store/-/mobx-persist-store-1.0.0-rc.0.tgz#fd0ea4438ddaf3d65cf4321b15ee4474e04b34ed"
+  integrity sha512-SMYAC0sn1NAonDlMlkDDW3/CoECc25kfQeGxQZdiriEPgnBWN5sV88PsLbmDSH7VxiuccMPVUqz6h3bUAgcy+Q==
 
 mobx-react-lite@^3.2.0:
   version "3.2.0"

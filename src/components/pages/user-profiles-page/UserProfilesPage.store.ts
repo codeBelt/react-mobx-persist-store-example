@@ -39,6 +39,7 @@ export class UserProfilesPageStore {
     makePersistable(this, {
       name: 'UserProfilesPageStore',
       properties: ['user', 'list'],
+      stringify: true,
       storage: customizedStorageController,
     });
   }
