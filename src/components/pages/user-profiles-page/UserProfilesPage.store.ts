@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { action, makeAutoObservable, runInAction } from 'mobx';
 import { getUserRequest } from '../../../domains/auth/auth.services';
 import { IUser } from '../../../domains/auth/auth.types';
 import {
@@ -41,7 +41,11 @@ export class UserProfilesPageStore {
       properties: ['user', 'list'],
       stringify: true,
       storage: customizedStorageController,
-    });
+    }).then(
+      action((persistStore) => {
+        console.log(persistStore.isHydrated);
+      })
+    );
   }
 
   get isHydrated(): boolean {
