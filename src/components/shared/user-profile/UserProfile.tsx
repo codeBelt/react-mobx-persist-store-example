@@ -145,8 +145,9 @@ export const UserProfile: React.FC<IProps> = observer((props) => {
                 </a>
                 . <br />
                 <br />
-                If you click "Pause Store Persist" then click "Load Random User" and click "Rehydrate Store". You will
-                notice it only saved the last data before you stopped listening for changes in the store.
+                If you click &quot;Pause Store Persist&quot; then click &quot;Load Random User&quot; and click
+                &quot;Rehydrate Store&quot;. You will notice it only saved the last data before you stopped listening
+                for changes in the store.
                 <br />
                 <br />
                 If you want to restart persisting data you can call <b>startPersisting</b> in the store and it will
