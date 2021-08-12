@@ -19,10 +19,10 @@ export const setupGlobalStore = (initialState: Partial<GlobalStore> = {}): Globa
   // Always create a new store for SSG and SSR
   if (!_globalStore || environment.isServer) {
     _globalStore = new GlobalStore();
-  }
 
-  if (initialState) {
-    _globalStore.hydrate(initialState);
+    if (initialState) {
+      _globalStore.hydrate(initialState);
+    }
   }
 
   return _globalStore;
